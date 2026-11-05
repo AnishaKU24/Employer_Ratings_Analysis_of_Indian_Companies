@@ -82,14 +82,183 @@ I will follow a structured data analysis process to understand the dataset and e
 * Identify incorrect or unusual ratings.
 * Check whether numerical information is stored in the correct format.
 
-### 3. Data Cleaning and Preprocessing
+---
+### Key Attributes
 
-* Remove unnecessary columns, if appropriate.
-* Handle missing values.
-* Remove duplicate records where necessary.
-* Standardize company and industry names.
-* Convert relevant columns into suitable data types.
-* Clean numerical values containing suffixes such as `k` and `L`, where appropriate.
+| Column                     | Description                              |
+|----------------------------|------------------------------------------|
+| name                       | Official company name                    |
+| rating                     | Average employee satisfaction rating     |
+| company_type               | Industry or company classification       |
+| hq                         | Company headquarters and other locations |
+| number_of_reviews          | Total employee reviews                   |
+| salaries                   | Total salary reports                     |
+| interviews                 | Total interview experiences              |
+| jobs                       | Total active job postings                |
+| benefits                   | Total employee benefit mentions          |
+| photos                     | Number of uploaded workplace photos      |
+
+---
+
+## 3. Data Cleaning and Preprocessing Steps
+
+### 3.1 Importing Libraries and Loading Dataset
+
+Imported the required Python libraries and loaded the CSV file using Pandas.
+
+**Libraries used:**
+- Pandas – Data manipulation and preprocessing.
+- NumPy – Numerical operations.
+- Matplotlib – Data visualization.
+- Seaborn – Statistical visualization.
+
+### 3.2 Initial Data Inspection
+
+Performed an initial examination of the dataset to understand its structure and identify data quality issues.
+
+The following functions were used:
+
+- `df.head()` – Displayed the first five records.
+- `df.info()` – Examined column names, data types, and non-null values.
+- `df.shape` – Identified the number of rows and columns.
+- `df.dtypes` – Checked individual column data types.
+- `df.size` – Calculated the total number of elements.
+- `df.nunique()` – Identified unique values in each column.
+- `df.isnull().sum()` – Identified missing values.
+
+**Initial observations:**
+- 10,000 records and 11 columns.
+- 598 duplicate company profile records.
+- Numerical attributes contained abbreviated values such as K and L.
+- The headquarters column contained combined location information.
+- Significant missing values were present in the jobs and photos columns.
+
+### 3.3 Removing Unnecessary Columns
+
+Removed the following columns:
+
+- `Unnamed: 0` – An unnecessary index column generated during CSV storage.
+- `photos` – Removed due to a high number of missing values (5,596 records).
+
+Used `drop()` with `errors='ignore'` to avoid errors if the specified columns were unavailable.
+
+### 3.4 Removing Duplicate Records
+
+Identified and removed duplicate company profiles using:
+
+- `duplicated()` – Identified duplicate records.
+- `drop_duplicates()` – Removed duplicate rows.
+- `reset_index()` – Reset the DataFrame index after removing duplicates.
+
+**Result:** Removed 598 duplicate records from the initial dataset.
+
+### 3.5 Converting Abbreviated Values into Numeric Format
+
+The columns `number_of_reviews`, `salaries`, `interviews`, `jobs`, and `benefits` contained abbreviated numerical values.
+
+Examples:
+- `54k` = 54,000
+- `1.2L` = 120,000
+- `5K` = 5,000
+
+**Preprocessing performed:**
+- Removed leading and trailing spaces.
+- Replaced K/k with the numerical multiplier for thousands.
+- Replaced L with the numerical multiplier for lakhs.
+- Converted the values into numeric format using `pd.to_numeric()`.
+- Used `errors='coerce'` to convert invalid values into NaN.
+
+### 3.6 Extracting Headquarters Information
+
+The original `hq` column contained headquarters city names along with information about additional company locations.
+
+Created two new columns:
+
+**1. hq_city**
+- Extracted the primary headquarters city.
+- Removed unnecessary spaces.
+- Replaced missing city values with `Unknown`.
+
+**2. other_locations**
+- Extracted the number of additional company locations.
+- Replaced missing values with 0.
+- Converted the column into integer format.
+
+The original `hq` column was subsequently removed because the extracted columns contained the required information.
+
+### 3.7 Cleaning Text Columns
+
+Standardized the following text columns:
+
+- `name`
+- `company_type`
+
+Used the Pandas `str.strip()` method to remove unnecessary leading and trailing whitespace.
+
+This helps maintain consistency when grouping and analyzing company names and classifications.
+
+### 3.8 Handling Missing Values
+
+Applied different missing-value treatment methods depending on the columns.
+
+| Column     | Missing Value Treatment                       | Method              |
+|------------|-----------------------------------------------|---------------------|
+| rating     | Removed records                               | dropna()            |
+| salaries   | Removed records                               | dropna()            |
+| interviews | Replaced with 0                               | fillna(0)           |
+| benefits   | Replaced with 0                               | fillna(0)           |
+| jobs       | Group-wise median, followed by overall median | transform('median') |
+
+**Explanation:**
+
+- **Rating and Salaries:** Removed records where these values were missing because they are important attributes for the planned analysis.
+- **Interviews and Benefits:** Replaced missing values with 0, assuming missing records indicate no reported activity.
+- **Jobs:** Applied median imputation based on company type. Any remaining missing values were replaced using the overall median.
+
+### 3.9 Renaming Columns
+
+Renamed selected columns to make their meanings clearer and improve readability.
+
+| Original Column | Updated Column   |
+|-----------------|------------------|
+| salaries        | salary_records   |
+| interviews      | total_interviews |
+| jobs            | job_postings     |
+| benefits        | benefits_count   |
+
+### 3.10 Standardizing Data Types
+
+Performed final data type standardization.
+
+- Converted `job_postings` into integer format.
+- Converted `salary_records` into integer format.
+- Converted `number_of_reviews` into integer format.
+- Converted `hq_city` into string format.
+
+Finally, used `df.info()` and `df.isnull().sum()` to inspect the processed dataset and verify its structure and remaining missing values.
+
+---
+
+## 4. Final Dataset Structure
+
+After preprocessing, the dataset contains the following analytical attributes:
+
+| Column                  | Description                        |
+|-------------------------|------------------------------------|
+| name                    | Company name                       |
+| rating                  | Employee satisfaction rating       |
+| company_type            | Company or industry classification |
+| number_of_reviews       | Total employee reviews             |
+| salary_records          | Total salary submissions           |
+| total_interviews        | Total interview experiences        |
+| job_postings            | Total job postings                 |
+| benefits_count          | Total employee benefit mentions    |
+| hq_city                 | Primary headquarters city          |
+| other_locations         | Number of additional locations     |
+
+**Note:** The final row count and remaining missing-value count should be obtained from the final notebook output rather than assumed.
+
+---
 
 ### 4. Exploratory Data Analysis (EDA)
 
