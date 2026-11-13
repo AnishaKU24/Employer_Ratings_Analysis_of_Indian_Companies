@@ -382,13 +382,6 @@ The correlation analysis also highlights that company activity metrics such as r
 
 Overall, this analysis provides a data-driven foundation for comparing employer reputation across industries and locations. It can help job seekers evaluate potential employers and support HR professionals and recruiters in understanding industry-level employer branding patterns.
 
-## Dataset Information
-
-- **Dataset:** Companies in India
-- **Source:** [Kaggle – Companies in India](https://www.kaggle.com/datasets/dhruvnegi2006/companies-in-india)
-- **Original Size:** 10,000 rows × 11 columns
-- **Final Dataset:** 9,390 company profiles
-- **File Format:** CSV
 
 ## Data Cleaning & Preprocessing
 
