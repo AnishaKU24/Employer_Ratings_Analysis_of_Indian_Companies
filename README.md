@@ -262,15 +262,160 @@ After preprocessing, the dataset contains the following analytical attributes:
 
 ### 4. Exploratory Data Analysis (EDA)
 
-Explore the dataset to answer questions such as:
+# Employer Ratings Analysis of Indian Companies
 
-* Which companies have the highest ratings?
-* Which companies have the most employee reviews?
-* Which company types are most common?
-* How are company ratings distributed?
-* Which companies have more job listings?
-* How do reviews, salary entries, and interview entries vary across companies?
-* Are there any noticeable patterns between company ratings and the number of reviews?
+## Overview
+
+The third phase of this project focuses on Exploratory Data Analysis (EDA) to identify patterns, trends, and relationships in employer ratings and company profiles across India.
+
+The project analyzes employee satisfaction ratings, company types, headquarters locations, employee review volumes, salary reports, interview experiences, job postings, and employee benefits.
+
+The objective is to understand how industry type, geographical location, and company activity metrics relate to employer ratings and evaluate the reliability of company ratings based on review volume.
+
+EDA was performed using three analytical approaches:
+
+- Univariate Analysis
+- Bivariate Analysis
+- Multivariate Analysis
+
+## Univariate Analysis
+
+Univariate analysis was performed to understand the distribution and characteristics of individual variables.
+
+### The analysis covered:
+
+- Descriptive statistical analysis
+- Company rating distribution
+- Top 10 company types by company count
+- Top 10 headquarters cities by company count
+- Employee review volume distribution
+- Rating reliability based on review thresholds
+
+### Key Observations
+
+- The average company rating is approximately **3.73**, with a median rating of **3.8**.
+- Approximately **74% of companies** have ratings between 3.0 and 4.0.
+- IT Services & Consulting has the highest company representation, with **1,221 companies**.
+- Engineering & Construction ranks second with **456 companies**.
+- Mumbai (1,412) and Bengaluru (1,398) have the highest number of company headquarters.
+- The NCR region (New Delhi, Gurugram, and Noida) together represents approximately 1,900 companies.
+- All companies have at least 111 employee reviews, meaning 100% meet the minimum threshold of 100 reviews.
+- Only approximately **23% of companies** have 500 or more employee reviews.
+
+## Bivariate Analysis
+
+Bivariate analysis was performed to investigate relationships between two variables and understand how company characteristics and employee engagement metrics relate to employer ratings.
+
+### Analyses Performed
+
+| No. | Analysis | Objective |
+|---|---|---|
+| 1 | Company Type vs. Average Rating | Compare employer ratings across the top 10 company types. |
+| 2 | Headquarters City vs. Average Rating | Identify regional differences in employer ratings. |
+| 3 | Headquarters City vs. Job Postings | Compare hiring activity across major headquarters cities. |
+| 4 | Review Volume vs. Employer Rating | Examine rating patterns across different review-volume groups. |
+| 5 | Company Type vs. Rating Reliability | Compare the percentage of companies with 500 or more reviews across industries. |
+
+### Key Observations
+
+- Engineering & Construction recorded the highest average rating of **3.85**, followed by Healthcare at **3.83**.
+- IT Services & Consulting and Software Product recorded the lowest average ratings among the top 10 company types, both at **3.57**.
+- The difference between the highest and lowest industry average ratings is approximately 0.28 points.
+- Average ratings across the top 10 headquarters cities show very little variation, ranging from **3.67 to 3.78**.
+- Median job postings across these cities range from 7 to 11.
+- Average ratings increase slightly with review volume, from 3.71 for companies with up to 150 reviews to 3.80 for companies with 1,000–5,000 reviews.
+- Rating variation decreases as review volume increases, indicating more consistent ratings among companies with larger review counts.
+- Auto Components (31%) and Internet (30%) have the highest share of companies with at least 500 reviews.
+- Education & Training has the lowest share at 12%.
+
+## Multivariate Analysis
+
+Multivariate analysis was performed to examine the combined relationships between three or more variables and identify patterns that may not be visible through individual comparisons.
+
+### Analyses Performed
+
+| No. | Analysis | Visualization |
+|---|---|---|
+| 1 | Correlation between ratings and company activity metrics | Pearson Correlation Heatmap |
+| 2 | Rank-based relationships between company activity metrics | Spearman Correlation Heatmap |
+| 3 | Company Type vs. Rating and Review Volume | Split Violin Plot |
+| 4 | Company Type vs. Headquarters City and Average Rating | Heatmap |
+
+### Key Observations
+
+- Employee reviews, salary reports, interview reports, and benefits show strong positive correlations, ranging from approximately 0.91 to 0.97 in the Pearson correlation analysis.
+- These metrics largely reflect company size and overall profile activity.
+- Job postings show moderate correlations with other company activity metrics, approximately 0.4 to 0.5.
+- Employer ratings show almost no linear relationship with company activity metrics, with Pearson correlation values close to zero.
+- Spearman correlation analysis shows similar patterns, although the relationships between activity metrics are comparatively weaker.
+- Companies with 500 or more reviews show narrower rating distributions across the four major company types analyzed.
+- Industry-level differences in average ratings are more noticeable than city-level differences.
+- Some company type and city combinations have very few records, so their average ratings should be interpreted cautiously.
+
+## Overall Key Insights
+
+The exploratory analysis highlighted several important patterns:
+
+1. **Employer Ratings:** Most companies have moderate to good employee ratings, with an overall average of 3.73.
+
+2. **Industry Comparison:** Engineering & Construction and Healthcare have the highest average ratings among the top 10 company types, while IT Services & Consulting and Software Product have the lowest.
+
+3. **Rating Reliability:** A minimum threshold of 100 reviews is insufficient to distinguish rating reliability because every company in the cleaned dataset meets this threshold. A stricter threshold of 500 reviews provides better differentiation.
+
+4. **Review Volume:** Companies with higher review volumes generally show more consistent rating distributions and slightly higher average ratings.
+
+5. **Geographical Distribution:** Mumbai and Bengaluru are the leading headquarters cities by company count. However, average employer ratings remain relatively similar across major cities.
+
+6. **Company Activity:** Reviews, salary reports, interviews, and benefits are strongly correlated with each other, suggesting that these metrics largely reflect company size rather than employee satisfaction.
+
+7. **Industry vs. Location:** Industry-level differences explain more of the variation in employer ratings than headquarters city differences.
+
+## Conclusion
+
+The EDA phase provided valuable insights into employer ratings, industry distribution, geographical patterns, and company activity across Indian companies.
+
+The analysis indicates that employer ratings alone do not provide a complete picture of company reputation. Review volume is an important factor to consider when interpreting ratings, as companies with more employee reviews generally demonstrate more consistent rating distributions.
+
+Industry-level comparisons reveal noticeable differences in average employer ratings, while geographical differences across major headquarters cities are relatively small.
+
+The correlation analysis also highlights that company activity metrics such as reviews, salary reports, interview experiences, and benefits are strongly related to one another but have very little linear relationship with employer ratings.
+
+Overall, this analysis provides a data-driven foundation for comparing employer reputation across industries and locations. It can help job seekers evaluate potential employers and support HR professionals and recruiters in understanding industry-level employer branding patterns.
+
+## Dataset Information
+
+- **Dataset:** Companies in India
+- **Source:** [Kaggle – Companies in India](https://www.kaggle.com/datasets/dhruvnegi2006/companies-in-india)
+- **Original Size:** 10,000 rows × 11 columns
+- **Final Dataset:** 9,390 company profiles
+- **File Format:** CSV
+
+## Data Cleaning & Preprocessing
+
+The following preprocessing steps were performed before EDA:
+
+- Removed the unnecessary `Unnamed: 0` index column.
+- Dropped the `photos` column because it contained 5,596 missing values (56%).
+- Identified and removed 598 duplicate records.
+- Converted abbreviated numerical values (K and L) into numeric formats.
+- Extracted headquarters city and other location counts from the `hq` column.
+- Removed unnecessary whitespace from text columns.
+- Removed records with missing ratings and salary information.
+- Replaced missing interview and benefits values with zero.
+- Handled missing job postings using company-type-wise median imputation, followed by overall median imputation.
+- Replaced missing headquarters cities with `Unknown`.
+
+## Tools & Technologies
+
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Plotly
+- Jupyter Notebook
+
+
 
 ### 5. Data Visualization
 
