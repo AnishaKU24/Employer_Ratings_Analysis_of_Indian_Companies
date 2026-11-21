@@ -470,11 +470,28 @@ Companies-in-India-Analysis/
 └── requirements.txt
 ```
 
-## 🚀 Project Status
+Conclusion
 
-**Status:** In Progress
+This project demonstrates how Python-based data analytics can be used to evaluate employer ratings and judge how far they can be trusted.
 
-This project is being developed step by step, starting with understanding the dataset and assessing its quality, followed by data cleaning, exploratory analysis, visualization, and insight generation.
+By converting 10,000 raw Indian company profiles into a clean analytical sample of 9,390, the project explores rating levels, industry and city benchmarks, review-volume reliability and the relationship between ratings and engagement metrics.
+
+The findings show that a star rating on its own says little about the evidence behind it: only about one in four profiles has 500 or more reviews, and ratings backed by more reviews are markedly more consistent.
+
+Industry, not city, is the main driver of rating differences, with a gap of about 0.28 points across the ten largest sectors. Headquarters city and engagement metrics (reviews, salary reports, interviews, benefits, job postings) explain almost nothing about rating, and those metrics mainly reflect company size.
+
+The results are best used for directional benchmarking by job seekers, HR teams and recruiters, not for causal claims or ranking individual employers, because of imputed job postings, single-snapshot data and online-presence bias.
+
+Overall, this project provides a practical application of data analytics in HR and employer-brand research and shows how data-driven insights can support better career, hiring and reputation decisions.
+
+👩‍💻 Author
+
+[Anisha K U]
+
+Aspiring Data Analyst | Python | Data Visualization
+
+GitHub: AnishaKU24
+
 
 ---
 
